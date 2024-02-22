@@ -1,4 +1,4 @@
-package com.nhnacademy.springboot.taskapiserver.entity;
+package com.nhnacademy.springboot.taskapiserver.domain.mileStone;
 
 import com.nhnacademy.springboot.taskapiserver.domain.project.Project;
 

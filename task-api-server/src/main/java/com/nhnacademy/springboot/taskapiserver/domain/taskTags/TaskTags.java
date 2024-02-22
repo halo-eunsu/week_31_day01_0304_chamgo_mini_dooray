@@ -1,4 +1,4 @@
-package com.nhnacademy.springboot.taskapiserver.entity;
+package com.nhnacademy.springboot.taskapiserver.domain.taskTags;
 
 import com.nhnacademy.springboot.taskapiserver.domain.tag.Tag;
 import com.nhnacademy.springboot.taskapiserver.domain.task.Task;

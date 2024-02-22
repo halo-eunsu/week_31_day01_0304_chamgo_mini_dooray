@@ -3,7 +3,7 @@ package com.nhnacademy.springboot.taskapiserver.domain.task;
 import com.nhnacademy.springboot.taskapiserver.domain.member.Member;
 import com.nhnacademy.springboot.taskapiserver.domain.project.Project;
 import com.nhnacademy.springboot.taskapiserver.domain.comment.Comment;
-import com.nhnacademy.springboot.taskapiserver.entity.MileStone;
+import com.nhnacademy.springboot.taskapiserver.domain.mileStone.MileStone;
 import lombok.Getter;
 import lombok.Setter;
 
