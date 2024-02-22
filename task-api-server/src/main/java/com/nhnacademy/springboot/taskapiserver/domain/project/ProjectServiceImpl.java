@@ -1,6 +1,5 @@
-package com.nhnacademy.springboot.taskapiserver.domain.Project;
+package com.nhnacademy.springboot.taskapiserver.domain.project;
 
-import com.nhnacademy.springboot.taskapiserver.entity.Project;
 import org.springframework.stereotype.Service;
 
 @Service

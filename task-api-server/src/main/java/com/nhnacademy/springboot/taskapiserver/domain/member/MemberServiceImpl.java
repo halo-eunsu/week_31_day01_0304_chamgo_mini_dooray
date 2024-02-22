@@ -1,9 +1,10 @@
-package com.nhnacademy.springboot.taskapiserver.domain.Member;
+package com.nhnacademy.springboot.taskapiserver.domain.member;
 
-import com.nhnacademy.springboot.taskapiserver.entity.Member;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;

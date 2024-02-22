@@ -1,5 +1,8 @@
 package com.nhnacademy.springboot.taskapiserver.entity;
 
+import com.nhnacademy.springboot.taskapiserver.domain.tag.Tag;
+import com.nhnacademy.springboot.taskapiserver.domain.task.Task;
+
 import javax.persistence.*;
 
 @Entity

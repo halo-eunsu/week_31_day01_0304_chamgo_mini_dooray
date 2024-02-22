@@ -1,6 +1,4 @@
-package com.nhnacademy.springboot.taskapiserver.domain.Member;
-
-import com.nhnacademy.springboot.taskapiserver.entity.Member;
+package com.nhnacademy.springboot.taskapiserver.domain.member;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.nhnacademy.springboot.taskapiserver.entity;
+package com.nhnacademy.springboot.taskapiserver.domain.project;
 
+import com.nhnacademy.springboot.taskapiserver.domain.task.Task;
 import lombok.Getter;
 
 import javax.persistence.*;

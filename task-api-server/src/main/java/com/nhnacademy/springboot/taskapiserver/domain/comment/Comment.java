@@ -1,8 +1,15 @@
-package com.nhnacademy.springboot.taskapiserver.entity;
+package com.nhnacademy.springboot.taskapiserver.domain.comment;
+
+import com.nhnacademy.springboot.taskapiserver.domain.member.Member;
+import com.nhnacademy.springboot.taskapiserver.domain.task.Task;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
