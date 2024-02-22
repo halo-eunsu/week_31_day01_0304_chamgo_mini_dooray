@@ -1,9 +1,12 @@
 package com.nhnacademy.springboot.taskapiserver.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
+    @Getter
     public enum StatusType {
         ACTIVE,
         SLEEP,
