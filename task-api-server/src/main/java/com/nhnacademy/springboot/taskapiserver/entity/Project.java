@@ -1,7 +1,5 @@
 package com.nhnacademy.springboot.taskapiserver.entity;
 
-import com.nhnacademy.springboot.taskapiserver.domain.StatusType;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,4 +18,9 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
+    public enum StatusType {
+        ACTIVE,
+        SLEEP,
+        TERMINATION
+    }
 }
