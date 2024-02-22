@@ -14,5 +14,6 @@ public class Member {
 
 
 
-    private String auth;
+    @Enumerated(EnumType.STRING)
+    private AuthType auth;
 }
