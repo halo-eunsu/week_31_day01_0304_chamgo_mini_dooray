@@ -1,18 +1,17 @@
 package com.nhnacademy.springboot.taskapiserver.entity;
 
+import com.nhnacademy.springboot.taskapiserver.domain.AuthType;
+
 import javax.persistence.*;
 
 @Entity
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
+    private String memberId;
 
     @ManyToOne
     @JoinColumn(name = "projectId")
     private Project project;
-
-
 
     @Enumerated(EnumType.STRING)
     private AuthType auth;

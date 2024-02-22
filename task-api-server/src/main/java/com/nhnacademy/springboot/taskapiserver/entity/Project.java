@@ -1,8 +1,9 @@
 package com.nhnacademy.springboot.taskapiserver.entity;
 
+import com.nhnacademy.springboot.taskapiserver.domain.StatusType;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Project {
@@ -14,16 +15,9 @@ public class Project {
 
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "statusId")
-    private Status status;
+    private StatusType status;
 
-    @OneToMany(mappedBy = "project")
-    private List<Member> members;
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
-    @OneToMany(mappedBy = "project")
-    private List<MileStone> mileStones;
-
-    @OneToMany(mappedBy = "project")
-    private Set<Tag> tags;
 }
