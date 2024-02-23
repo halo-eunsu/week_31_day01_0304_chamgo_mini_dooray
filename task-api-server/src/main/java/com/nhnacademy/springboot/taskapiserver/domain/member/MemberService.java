@@ -11,4 +11,10 @@ public interface MemberService {
     Member createMember(Member member);
 
     void delete(Member member);
+
+
+    void addMemberToProject(Long projectId, Long memberId);
+
+
+    void removeMemberFromProject(Long projectId, Long memberId);
 }
