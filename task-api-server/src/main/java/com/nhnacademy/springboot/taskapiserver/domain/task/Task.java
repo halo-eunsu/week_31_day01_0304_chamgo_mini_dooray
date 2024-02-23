@@ -31,6 +31,7 @@ public class Task {
     private Member member;
 
     private String title;
+    private String content;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Comment> comments;

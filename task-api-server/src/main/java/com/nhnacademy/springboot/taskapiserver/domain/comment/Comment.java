@@ -17,8 +17,6 @@ public class Comment {
 
     private String content;
 
-    private String adminId;
-
     @ManyToOne
     @JoinColumn(name = "taskId")
     private Task task;
