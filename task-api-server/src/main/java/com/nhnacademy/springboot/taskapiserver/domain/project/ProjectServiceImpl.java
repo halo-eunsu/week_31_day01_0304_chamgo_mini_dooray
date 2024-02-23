@@ -12,7 +12,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project createService(Project project) {
+    public Project createProject(Project project) {
         if (projectRepository.existsById(project.getProjectId())) {
             throw new IllegalArgumentException("이미 존재: " + project.getProjectId());
         }
