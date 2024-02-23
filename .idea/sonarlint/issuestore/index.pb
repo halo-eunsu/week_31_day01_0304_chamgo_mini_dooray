@@ -92,3 +92,5 @@ jtask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/domain/ta
 mtask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/domain/taskTags/TaskTagsRepository.java,5/f/5f7fca538e704ec2b26825a135c3a8c27bc4caa7
 ž
 ntask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/domain/taskTags/TaskTagsServiceImpl.java,2/d/2d40418efba095d40782e5ed3ee7d38247fb61d2
+“
+ctask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/TaskApiServerApplication.java,f/9/f950a3352c3eba938ee1c06dfb719707e9e4f8b2
