@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "login.adaptor")
+@ConfigurationProperties(prefix = "login.service")
 public class LoginServiceProperties {
     @NotNull
     private String address;

@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.openapigateway.service;
 
 import com.nhnacademy.springboot.openapigateway.config.properties.AccountServiceProperties;
 import com.nhnacademy.springboot.openapigateway.domain.Account;
+import com.nhnacademy.springboot.openapigateway.utils.HttpHeadersUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,9 @@ public class AccountService {
     }
 
     public List<Account> getAccounts() {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
         ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountServiceProperties.getAddress(),
                 HttpMethod.GET,
                 requestEntity,
@@ -35,55 +34,48 @@ public class AccountService {
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
+
         return exchange.getBody();
     }
 
     public Account getAccount(Long id) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
         ResponseEntity<Account> exchange = restTemplate.exchange(accountServiceProperties.getAddress() + "/{id}",
                 HttpMethod.GET,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                },
+                Account.class,
                 id);
 
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
+
         return exchange.getBody();
     }
 
     public void createAccount(Account account) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<Account> requestEntity = new HttpEntity<>(account, httpHeaders);
-        ResponseEntity<Account> exchange = restTemplate.exchange(accountServiceProperties.getAddress(),
+
+        ResponseEntity<Void> exchange = restTemplate.exchange(accountServiceProperties.getAddress(),
                 HttpMethod.POST,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+                Void.class);
         if (exchange.getStatusCode() != HttpStatus.CREATED) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
     }
 
     public void deleteAccount(Long id) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<Account> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<Account> exchange = restTemplate.exchange(accountServiceProperties.getAddress() + "/{id}",
+
+        ResponseEntity<Void> exchange = restTemplate.exchange(accountServiceProperties.getAddress() + "/{id}",
                 HttpMethod.DELETE,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                },
+                Void.class,
                 id);
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());

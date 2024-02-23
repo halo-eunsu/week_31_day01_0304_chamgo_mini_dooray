@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/accounts")
 public class AccountController {
@@ -28,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public String createAccount(@RequestBody Account account) {
+    public String createAccount(@RequestBody @Valid Account account) {
         accountService.createAccount(account);
         return "OK";
     }

@@ -3,11 +3,11 @@ package com.nhnacademy.springboot.openapigateway.service;
 import com.nhnacademy.springboot.openapigateway.config.properties.LoginServiceProperties;
 import com.nhnacademy.springboot.openapigateway.domain.LoginRequest;
 import com.nhnacademy.springboot.openapigateway.domain.LoginResponse;
+import com.nhnacademy.springboot.openapigateway.utils.HttpHeadersUtils;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,11 +22,9 @@ public class LoginService {
     }
 
     public Optional<LoginResponse> login(LoginRequest loginRequest) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<LoginRequest> requestEntity = new HttpEntity<>(loginRequest, httpHeaders);
+
         ResponseEntity<LoginResponse> exchange = restTemplate.exchange(loginServiceProperties.getAddress(),
                 HttpMethod.POST,
                 requestEntity,

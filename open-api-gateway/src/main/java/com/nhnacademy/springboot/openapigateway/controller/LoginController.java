@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -23,7 +24,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestBody LoginRequest loginRequest, HttpSession session, Model model) {
+    public String login(@RequestBody @Valid LoginRequest loginRequest, HttpSession session, Model model) {
         Optional<LoginResponse> loginResponse = loginService.login(loginRequest);
 
         if (loginResponse.isPresent() && loginResponse.get().getId() != null) {

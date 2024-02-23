@@ -1,11 +1,13 @@
 package com.nhnacademy.springboot.openapigateway.interceptor;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
