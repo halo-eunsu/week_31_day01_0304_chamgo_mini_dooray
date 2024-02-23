@@ -11,5 +11,5 @@ public interface CommentService {
 
     void modifyCommentContent(Comment comment);
 
-
+    Comment createComment(Comment comment);
 }

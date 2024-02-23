@@ -38,4 +38,12 @@ public class CommentServiceImpl implements CommentService{
                     commentRepository.save(targetComment);
                 });
     }
+
+    @Override
+    public Comment createComment(Comment comment) {
+        if (commentRepository.existsById(comment.getCommentId())) {
+            throw new IllegalArgumentException("id: " + comment.getCommentId() + "is already exist");
+        }
+        return commentRepository.save(comment);
+    }
 }
