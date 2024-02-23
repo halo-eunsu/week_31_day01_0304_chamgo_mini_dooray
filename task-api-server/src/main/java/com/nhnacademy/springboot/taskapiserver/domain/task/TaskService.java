@@ -8,7 +8,7 @@ public interface TaskService {
 
 
     //todo 01: Task 를 등록/수정/삭제 (Project Member only)
-    void registerTask(Task task);
+    Task registerTask(Task task);
     void modifyTaskComment(Task task);
     void deleteTask(Task task);
 
@@ -17,4 +17,5 @@ public interface TaskService {
     List<Comment> getTaskComment(Long id);
 
 
+    Task modifyTask(Long taskId, Task task);
 }

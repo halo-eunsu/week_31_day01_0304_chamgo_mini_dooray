@@ -16,8 +16,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void registerTask(Task task) {
-        taskRepository.save(task);
+    public Task registerTask(Task task) {
+        return taskRepository.save(task);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Task task) {
-        taskRepository.delete(task);
+        taskRepository.deleteById(task.getTaskId());
     }
 
     @Override
@@ -44,5 +44,10 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findById(id)
                 .map(Task::getComments)
                 .orElse(Collections.emptyList());
+    }
+
+    @Override
+    public Task modifyTask(Long taskId, Task task) {
+        return null;
     }
 }
