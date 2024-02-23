@@ -27,7 +27,7 @@ public class CommentController {
     public Comment createComment(@PathVariable ("projectId") Long projectId,
                                  @PathVariable("taskId")Long taskId,
                                  @RequestBody CommentRequest commentRequest){
-        return null;
+        return commentService.createComment();
     }
 
 //todo: 2. Comment 수정 - PUT /projects/{projectId}/tasks/{taskId}/comments/{commentId}

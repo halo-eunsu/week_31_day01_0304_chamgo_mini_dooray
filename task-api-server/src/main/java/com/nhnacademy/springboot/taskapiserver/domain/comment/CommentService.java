@@ -10,7 +10,6 @@ public interface CommentService {
 
     List<Comment> getComments();
 
-    void updateComment(String content);
 
     Comment getComment(Long id);
     void deleteComment(Comment comment);
