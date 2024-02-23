@@ -9,15 +9,12 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
     private String content;
-
-    private String adminId;
 
     @ManyToOne
     @JoinColumn(name = "taskId")

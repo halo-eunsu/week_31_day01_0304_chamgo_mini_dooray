@@ -112,3 +112,5 @@ ftask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/controlle
 ftask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/controller/ProjecController.java,b/2/b283f79931bb1e60d840d92c1e480a9a2324ec2a
 —
 gtask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/controller/ProjectController.java,b/c/bc38b3582dd3daae628a27359573b7a2bfb42279
+”
+dtask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/controller/ResultResponse.java,8/4/848bfa2773b734d05976f6571d27d6d67bc7b7f9
