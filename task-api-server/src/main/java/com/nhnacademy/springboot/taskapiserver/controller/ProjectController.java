@@ -24,12 +24,14 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
+
         Project createdProject = projectService.createProject(project);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
     }
 
     @PutMapping("/{projectId}")
-    public ResponseEntity<Project> updateProject(@PathVariable Long projectId, @RequestBody Project projectDetails) {
+    public ResponseEntity<Project> updateProject(@PathVariable Long projectId,
+                                                 @RequestBody Project projectDetails) {
         Project updatedProject = projectService.updateProject(projectId, projectDetails);
         return ResponseEntity.ok(updatedProject);
     }
@@ -42,20 +44,23 @@ public class ProjectController {
 
     @GetMapping("/{projectId}")
     public ResponseEntity<Project> getProject(@PathVariable Long projectId) {
-        Project project = projectService.getProjectById(projectId).orElseThrow(
+        Project project = projectService.getProjectById(projectId)
+                .orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found")
         );
         return ResponseEntity.ok(project);
     }
 
     @PostMapping("/{projectId}/members")
-    public ResponseEntity<Void> addMemberToProject(@PathVariable Long projectId, @RequestBody Long memberId) {
+    public ResponseEntity<Void> addMemberToProject(@PathVariable Long projectId,
+                                                   @RequestBody Long memberId) {
         memberService.addMemberToProject(projectId, memberId);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{projectId}/members/{memberId}")
-    public ResponseEntity<Void> removeMemberFromProject(@PathVariable Long projectId, @PathVariable Long memberId) {
+    public ResponseEntity<Void> removeMemberFromProject(@PathVariable Long projectId,
+                                                        @PathVariable Long memberId) {
         memberService.removeMemberFromProject(projectId, memberId);
         return ResponseEntity.ok().build();
     }
