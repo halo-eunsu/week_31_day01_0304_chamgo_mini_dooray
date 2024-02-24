@@ -118,3 +118,5 @@ dtask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/controlle
 Ytask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/dto/ProjectDto.java,7/4/7416ea565ab13f82692206ca421be49230530df5
 ‹
 [task-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/dto/MileStoneDto.java,1/4/1431c394733dd31c8e90d52ddc29d84d8bd7aa41
+œ
+laccount-api-server/src/main/java/com/nhnacademy/springboot/accountapiserver/AccountApiServerApplication.java,1/b/1b8f72fcd91e8994c104da08db39152b1fa264b5
