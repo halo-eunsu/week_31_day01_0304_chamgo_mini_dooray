@@ -26,24 +26,22 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public void deleteComment(Comment comment) {
-        commentRepository.delete(comment);
+    public void deleteComment(Long projectId, Long taskId, Long commentId) {
+        commentRepository.deleteById(commentId);
     }
 
     @Override
-    public void modifyCommentContent(Comment comment) {
-        commentRepository.findById(comment.getCommentId()).ifPresent(
-                targetComment -> {
-                    targetComment.setContent(comment.getContent());
-                    commentRepository.save(targetComment);
-                });
+    public Comment modifyComment(Long projectId, Long taskId, Long commentId, String content) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + commentId));
+        comment.setContent(content);
+        return commentRepository.save(comment);
     }
 
     @Override
-    public Comment createComment(Comment comment) {
-        if (commentRepository.existsById(comment.getCommentId())) {
-            throw new IllegalArgumentException("id: " + comment.getCommentId() + "is already exist");
-        }
+    public Comment createComment(Long projectId, Long taskId, String content) {
+        Comment comment = new Comment();
+        comment.setContent(content);
         return commentRepository.save(comment);
     }
 }

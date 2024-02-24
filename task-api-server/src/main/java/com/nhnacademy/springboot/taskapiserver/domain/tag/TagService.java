@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface TagService {
 
-    List<Tag> getTags();
+//    List<Tag> getTags();
 
     Tag getTag(Long id);
 
-    void registerTag(Tag tag);
+    Tag registerTag(Tag tag, Long id);
     void modifyTagName(Tag tag);
-    void deleteTag(Tag tag);
+    void deleteTag(Long tagId, Long projectId);
 
     boolean isTagNameExistsInProject(Project project, String tagName);
+
+    void assignTagToTask(Long projectId, Long taskId, Long tagId);
 }

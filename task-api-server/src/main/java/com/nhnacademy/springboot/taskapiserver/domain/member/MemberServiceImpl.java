@@ -1,7 +1,9 @@
 package com.nhnacademy.springboot.taskapiserver.domain.member;
 
+import com.nhnacademy.springboot.taskapiserver.domain.project.Project;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,9 +21,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member getMember(Long id) {
-        return memberRepository.findById(id)
-                .orElse(null);
+    public Member getMember(String memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found: " + memberId));
     }
 
     @Override
@@ -33,7 +35,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void delete(Member member) {
+    public void delete(String memberId) {
+        Member member = this.getMember(memberId);
         memberRepository.delete(member);
+    }
+
+    @Override
+    public List<Project> getProjects(String memberId) {
+        Member member = this.getMember(memberId);
+        return new ArrayList<>(member.getProjects());
     }
 }

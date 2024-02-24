@@ -10,11 +10,10 @@ public interface CommentService {
 
     List<Comment> getComments();
 
-
     Comment getComment(Long id);
-    void deleteComment(Comment comment);
+    void deleteComment(Long projectId, Long taskId, Long commentId);
 
-    void modifyCommentContent(Comment comment);
+    Comment modifyComment(Long projectId, Long taskId, Long commentId, String content);
 
-    Comment createComment(Comment comment);
+    Comment createComment(Long projectId, Long taskId, String content);
 }

@@ -21,25 +21,31 @@ public class CommentController {
     }
 
 
-//todo:  1. Comment 생성 - POST /projects/{projectId}/tasks/{taskId}/comments
-    @PostMapping
+    //todo:  1. Comment 생성 - POST /projects/{projectId}/tasks/{taskId}/comments
+    @PostMapping("/tasks/{taskId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment createComment(@PathVariable ("projectId") Long projectId,
-                                 @PathVariable("taskId")Long taskId,
-                                 @RequestBody CommentRequest commentRequest){
-        return commentService.createComment();
-    }
-
-//todo: 2. Comment 수정 - PUT /projects/{projectId}/tasks/{taskId}/comments/{commentId}
-    @PutMapping("/task/{taskId}/comments/{commentId}")
-    private ResultResponse modifyComment(@PathVariable("projectId") Long projectId,
-                                         @PathVariable("taskId") Long taskId,
-                                         @PathVariable("commentId") Long commentId,
-                                         @RequestBody CommentRequest commentRequest){
-        return null;
-
+    public Comment createComment(@PathVariable Long projectId,
+                                 @PathVariable Long taskId,
+                                 @RequestBody CommentRequest commentRequest) {
+        return commentService.createComment(projectId, taskId, commentRequest.getContent());
     }
 
 
-//todo: 3. Comment 삭제 - DELETE /projects/{projectId}/tasks/{taskId}/comments/{commentId}
+    //todo: 2. Comment 수정 - PUT /projects/{projectId}/tasks/{taskId}/comments/{commentId}
+    @PutMapping("/tasks/{taskId}/comments/{commentId}")
+    public Comment modifyComment(@PathVariable Long projectId,
+                                 @PathVariable Long taskId,
+                                 @PathVariable Long commentId,
+                                 @RequestBody CommentRequest commentRequest) {
+        return commentService.modifyComment(projectId, taskId, commentId, commentRequest.getContent());
+    }
+
+    //todo: 3. Comment 삭제 - DELETE /projects/{projectId}/tasks/{taskId}/comments/{commentId}
+    @DeleteMapping("/tasks/{taskId}/comments/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteComment(@PathVariable Long projectId,
+                              @PathVariable Long taskId,
+                              @PathVariable Long commentId) {
+        commentService.deleteComment(projectId, taskId, commentId);
+    }
 }
