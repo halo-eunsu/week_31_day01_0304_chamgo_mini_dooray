@@ -28,6 +28,7 @@ public class TagController {
     }
 
     //todo: 2. Tag 수정 - PUT /projects/{projectId}/tags/{tagId}
+    //TODO: 까먹고 이거 안함 ㅋㅋ
     @PutMapping("/tags/{tagId}")
     public String modifyTag(@PathVariable("tagId") Long tagId) {
         return null;
