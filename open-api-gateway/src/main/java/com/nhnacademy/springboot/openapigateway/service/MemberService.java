@@ -43,7 +43,7 @@ public class MemberService {
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
-
+        System.out.println(exchange.getBody());
         return Optional.ofNullable(exchange.getBody());
     }
 
