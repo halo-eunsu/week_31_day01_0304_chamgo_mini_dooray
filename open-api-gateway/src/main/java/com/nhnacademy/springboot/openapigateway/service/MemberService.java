@@ -7,6 +7,7 @@ import com.nhnacademy.springboot.openapigateway.utils.HttpHeadersUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,15 +37,10 @@ public class MemberService {
                     requestEntity,
                     Member.class,
                     memberId);
-        } catch (HttpServerErrorException e) {
+            return Optional.ofNullable(exchange.getBody());
+        } catch (HttpServerErrorException | HttpClientErrorException e) {
             return Optional.empty();
         }
-
-        if (exchange.getStatusCode() != HttpStatus.OK) {
-            throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
-        }
-        System.out.println(exchange.getBody());
-        return Optional.ofNullable(exchange.getBody());
     }
 
     // 내가 속한 프로젝트 목록 보기
