@@ -9,19 +9,13 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Member {
-    @NotBlank
-    private String memberId;
+public class Tag {
+    @NotEmpty
+    private Long tagId;
 
     @NotEmpty
     private Long projectId;
 
     @NotBlank
-    private Auth auth;
-
-    public enum Auth {
-        ADMIN,
-        MEMBER
-    }
+    private String tagName;
 }
-

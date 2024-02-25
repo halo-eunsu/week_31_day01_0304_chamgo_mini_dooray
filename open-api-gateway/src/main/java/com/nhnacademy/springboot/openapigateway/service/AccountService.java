@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.openapigateway.service;
 
 import com.nhnacademy.springboot.openapigateway.config.properties.AccountServiceProperties;
 import com.nhnacademy.springboot.openapigateway.domain.Account;
+import com.nhnacademy.springboot.openapigateway.domain.AccountEditDto;
 import com.nhnacademy.springboot.openapigateway.utils.HttpHeadersUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -38,7 +39,7 @@ public class AccountService {
         return exchange.getBody();
     }
 
-    public Account getAccount(Long id) {
+    public Account getAccount(String id) {
         HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
@@ -63,12 +64,31 @@ public class AccountService {
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
+
         if (exchange.getStatusCode() != HttpStatus.CREATED) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
+
     }
 
-    public void deleteAccount(Long id) {
+    public void editAccount(String id, AccountEditDto accountEditDto) {
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
+        HttpEntity<AccountEditDto> requestEntity = new HttpEntity<>(accountEditDto, httpHeaders);
+
+        ResponseEntity<Void> exchange = restTemplate.exchange(accountServiceProperties.getAddress() + "/{id}",
+                HttpMethod.PUT,
+                requestEntity,
+                Void.class,
+                id);
+
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
+        }
+
+
+    }
+
+    public void deleteAccount(String id) {
         HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<Account> requestEntity = new HttpEntity<>(httpHeaders);
 
@@ -77,8 +97,10 @@ public class AccountService {
                 requestEntity,
                 Void.class,
                 id);
+
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
+
     }
 }

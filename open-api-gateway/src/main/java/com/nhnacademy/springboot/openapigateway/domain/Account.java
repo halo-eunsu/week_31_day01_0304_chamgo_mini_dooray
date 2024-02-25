@@ -1,22 +1,23 @@
 package com.nhnacademy.springboot.openapigateway.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Account {
     @NotBlank
     private String id;
+
     @NotBlank
     private String password;
+
     @NotBlank
     private String email;
+
     @NotBlank
     private String name;
 }

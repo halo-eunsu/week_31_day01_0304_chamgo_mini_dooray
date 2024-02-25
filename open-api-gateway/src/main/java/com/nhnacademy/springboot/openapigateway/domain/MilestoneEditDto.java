@@ -8,10 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class LoginRequest {
+public class MilestoneEditDto {
     @NotBlank
-    private String id;
-
-    @NotBlank
-    private String password;
+    private String milestoneName;
 }

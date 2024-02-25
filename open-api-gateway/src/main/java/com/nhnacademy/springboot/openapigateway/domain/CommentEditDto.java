@@ -2,16 +2,15 @@ package com.nhnacademy.springboot.openapigateway.domain;
 
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class LoginRequest {
-    @NotBlank
-    private String id;
+public class CommentEditDto {
 
-    @NotBlank
-    private String password;
+    @NotEmpty
+    private String content;
+
 }

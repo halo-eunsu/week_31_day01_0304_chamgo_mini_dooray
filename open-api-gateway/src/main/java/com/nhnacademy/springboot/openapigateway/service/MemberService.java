@@ -48,7 +48,7 @@ public class MemberService {
     }
 
     // 내가 속한 프로젝트 목록 보기
-    public List<Project> getProjects(Long memberId) {
+    public List<Project> getProjects(String memberId) {
         HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
@@ -56,7 +56,8 @@ public class MemberService {
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                });
+                },
+                memberId);
 
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());

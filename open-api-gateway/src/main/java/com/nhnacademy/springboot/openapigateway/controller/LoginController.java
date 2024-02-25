@@ -6,7 +6,6 @@ import com.nhnacademy.springboot.openapigateway.service.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -24,13 +23,13 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestBody @Valid LoginRequest loginRequest, HttpSession session, Model model) {
+    public String login(@Valid LoginRequest loginRequest, HttpSession session, Model model) {
         Optional<LoginResponse> loginResponse = loginService.login(loginRequest);
 
         if (loginResponse.isPresent() && loginResponse.get().getId() != null) {
             session.setAttribute("loginId", loginResponse.get().getId());
             model.addAttribute("loginId", loginResponse.get().getId());
-            return "redirect:home";
+            return "redirect:/home";
         }
 //        model.addAttribute("loginError", "Login failed.");
         return "login";

@@ -1,6 +1,7 @@
 package com.nhnacademy.springboot.openapigateway.controller;
 
 import com.nhnacademy.springboot.openapigateway.domain.Account;
+import com.nhnacademy.springboot.openapigateway.domain.AccountEditDto;
 import com.nhnacademy.springboot.openapigateway.service.AccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,20 +25,26 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public String getAccount(@PathVariable Long id) {
-        accountService.getAccount(id);
-        return "accounts/" + id;
+    public String getAccount(@PathVariable String id, Model model) {
+        model.addAttribute("account", accountService.getAccount(id));
+        return "accountDetail";
     }
 
     @PostMapping
-    public String createAccount(@RequestBody @Valid Account account) {
+    public String createAccount(@Valid Account account) {
         accountService.createAccount(account);
-        return "OK";
+        return "redirect:/";
+    }
+
+    @PutMapping("/{id}")
+    public String editAccount(@PathVariable String id, @Valid AccountEditDto accountEditDto) {
+        accountService.editAccount(id, accountEditDto);
+        return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteAccount(@PathVariable Long id) {
+    public String deleteAccount(@PathVariable String id) {
         accountService.deleteAccount(id);
-        return "OK";
+        return "redirect:/";
     }
 }

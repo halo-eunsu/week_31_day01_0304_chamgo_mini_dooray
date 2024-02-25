@@ -1,7 +1,6 @@
 package com.nhnacademy.springboot.openapigateway.domain;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -10,22 +9,20 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Project {
+public class Task {
+    @NotEmpty
+    private Long taskId;
+
     @NotEmpty
     private Long projectId;
 
-    @NotBlank
-    @Length(min = 3, max = 30)
-    private String projectName;
+    private Long milestoneId;
 
     @NotBlank
-    private StatusType status;
+    private String memberId;
+
+    @NotEmpty
+    private String title;
 
     private String content;
-
-    public enum StatusType {
-        ACTIVE,
-        SLEEP,
-        TERMINATION
-    }
 }

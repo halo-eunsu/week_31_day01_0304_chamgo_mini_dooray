@@ -2,16 +2,14 @@ package com.nhnacademy.springboot.openapigateway.domain;
 
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class LoginRequest {
-    @NotBlank
-    private String id;
+public class TaskEditDto {
+    private Long milestoneId;
 
-    @NotBlank
-    private String password;
+    private String title;
+
+    private String content;
 }

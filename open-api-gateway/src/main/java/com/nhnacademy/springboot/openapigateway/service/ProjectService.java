@@ -7,13 +7,14 @@ import com.nhnacademy.springboot.openapigateway.domain.ProjectEditDto;
 import com.nhnacademy.springboot.openapigateway.utils.HttpHeadersUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
 
+@Service
 public class ProjectService {
 
     private final RestTemplate restTemplate;
@@ -73,7 +74,7 @@ public class ProjectService {
     }
 
     // 프로젝트명, 내용, 상태 수정
-    public void editProject(ProjectEditDto projectEditDto) {
+    public void editProject(Long projectId, ProjectEditDto projectEditDto) {
         HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<ProjectEditDto> requestEntity = new HttpEntity<>(projectEditDto, httpHeaders);
 
@@ -81,13 +82,12 @@ public class ProjectService {
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class,
-                projectEditDto.getProjectId());
+                projectId);
 
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
         }
     }
-
 
 
     // 프로젝트에 멤버 추가하기
@@ -107,7 +107,7 @@ public class ProjectService {
     }
 
     // 프로젝트에 멤버 삭제하기
-    public void deleteProjectMember(Long projectId, Long memberId) {
+    public void deleteProjectMember(Long projectId, String memberId) {
         HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
         HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
 
@@ -123,8 +123,21 @@ public class ProjectService {
         }
     }
 
+    public List<Member> getProjectMembers(Long projectId) {
+        HttpHeaders httpHeaders = HttpHeadersUtils.createJsonHeaders();
+        HttpEntity<Void> requestEntity = new HttpEntity<>(httpHeaders);
 
-    // task 등록
+        ResponseEntity<List<Member>> exchange = restTemplate.exchange(projectServiceProperties.getAddress() + "/{projectId}/members",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {},
+                projectId);
 
+        if (exchange.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("HTTP Status: " + exchange.getStatusCode());
+        }
+
+        return exchange.getBody();
+    }
 
 }
