@@ -1,10 +1,9 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.springboot.accountapiserver.controller;
 
-import com.nhnacademy.mini.dooray.domain.Account;
-import com.nhnacademy.mini.dooray.domain.AccountRepository;
+import com.nhnacademy.springboot.accountapiserver.domain.Account;
+import com.nhnacademy.springboot.accountapiserver.domain.AccountRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.implementation.bytecode.ShiftRight;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

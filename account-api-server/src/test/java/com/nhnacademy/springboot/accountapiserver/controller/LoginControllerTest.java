@@ -1,17 +1,13 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.springboot.accountapiserver.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mini.dooray.domain.Account;
-import com.nhnacademy.mini.dooray.domain.AccountRepository;
+import com.nhnacademy.springboot.accountapiserver.domain.Account;
+import com.nhnacademy.springboot.accountapiserver.domain.AccountRepository;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;

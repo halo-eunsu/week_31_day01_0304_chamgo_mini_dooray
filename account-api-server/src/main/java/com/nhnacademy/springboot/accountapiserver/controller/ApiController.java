@@ -1,7 +1,7 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.springboot.accountapiserver.controller;
 
-import com.nhnacademy.mini.dooray.domain.Account;
-import com.nhnacademy.mini.dooray.domain.AccountService;
+import com.nhnacademy.springboot.accountapiserver.domain.Account;
+import com.nhnacademy.springboot.accountapiserver.domain.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.springboot.accountapiserver.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mini.dooray.domain.Account;
+import com.nhnacademy.springboot.accountapiserver.domain.Account;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.nhnacademy.mini.dooray.domain;
+package com.nhnacademy.springboot.accountapiserver.domain;
 
 import org.springframework.stereotype.Service;
 

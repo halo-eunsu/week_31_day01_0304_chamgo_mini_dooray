@@ -1,8 +1,6 @@
-package com.nhnacademy.mini.dooray.domain;
+package com.nhnacademy.springboot.accountapiserver.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mini.dooray.domain.Account;
-import com.nhnacademy.mini.dooray.domain.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
