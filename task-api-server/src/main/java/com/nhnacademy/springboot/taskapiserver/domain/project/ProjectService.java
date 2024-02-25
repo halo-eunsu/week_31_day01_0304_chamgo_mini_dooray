@@ -12,5 +12,5 @@ public interface ProjectService {
     void modifyProject(ProjectDto projectDto); // 프로젝트 수정 기능 추가
     void deleteProject(Long projectId); // 프로젝트 삭제 기능 추가
     void addProjectMember(Long projectId, Member member); // 프로젝트에 멤버 추가 기능 추가
-    void deleteProjectMember(Long projectId, Long memberId); // 프로젝트에서 멤버 삭제 기능 추가
+    void deleteProjectMember(Long projectId, String memberId); // 프로젝트에서 멤버 삭제 기능 추가
 }

@@ -30,12 +30,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "Member",
-            joinColumns = @JoinColumn(name = "projectId"),
-            inverseJoinColumns = @JoinColumn(name = "memberId")
-    )
+    @ManyToMany(mappedBy = "projects")
     private Set<Member> members = new HashSet<>();
 
     public Project(Long projectId) {

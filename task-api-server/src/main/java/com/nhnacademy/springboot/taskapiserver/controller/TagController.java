@@ -34,7 +34,7 @@ public class TagController {
 
 
     //todo: 3. Tag 삭제 - DELETE /projects/{projectId}/tags/{tagId}
-    @DeleteMapping
+    @DeleteMapping("/tags/{tagId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTag(@PathVariable Long projectId,
                           @PathVariable Long tagId) {
@@ -42,7 +42,7 @@ public class TagController {
     }
 
     //todo: 4. Task에 Tag 설정 - POST /projects/{projectId}/tasks/{taskId}/tags
-    @PostMapping("/tasks/{taskId}")
+    @PostMapping("/tasks/{taskId}/tag")
     public void assignTagToTask(@PathVariable("projectId") Long projectId,
                                 @PathVariable("taskId") Long taskId,
                                 @RequestBody Long tagId) {

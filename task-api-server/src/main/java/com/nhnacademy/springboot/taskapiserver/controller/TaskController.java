@@ -49,9 +49,9 @@ public class TaskController {
     }
 
     //todo:    4. Task 목록 조회 - GET /projects/{projectId}/tasks
-    @GetMapping
+    @GetMapping("/tasks")
     public List<Task> getAllTasks(@PathVariable Long projectId) {
-        return taskRepository.findByProjectId(projectId);
+        return taskRepository.findByProject_ProjectId(projectId);
     }
 
     //todo:    5. Task 내용 조회 - GET /projects/{projectId}/tasks/{taskId}

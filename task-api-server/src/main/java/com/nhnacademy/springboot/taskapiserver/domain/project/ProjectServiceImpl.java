@@ -36,6 +36,9 @@ public class ProjectServiceImpl implements ProjectService {
     public void modifyProject(ProjectDto projectDto) {
         Project project = projectRepository.findById(projectDto.getProjectId())
                 .orElse(null);
+        project.setProjectName(projectDto.getProjectName());
+        project.setContent(projectDto.getContent());
+        project.setStatus(Project.StatusType.valueOf(projectDto.getStatus()));
         projectRepository.save(project);
     }
 
@@ -56,7 +59,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public void deleteProjectMember(Long projectId, Long memberId) {
+    public void deleteProjectMember(Long projectId, String memberId) {
         Project project = projectRepository.findById(projectId)
                 .orElse(null);
         Member member = memberRepository.findById(memberId)

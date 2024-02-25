@@ -55,7 +55,7 @@ public class ProjectController {
     // 프로젝트에서 멤버 삭제
     @DeleteMapping("/{projectId}/members/{memberId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteProjectMember(@PathVariable Long projectId, @PathVariable Long memberId) {
+    public void deleteProjectMember(@PathVariable Long projectId, @PathVariable String memberId) {
         projectService.deleteProjectMember(projectId, memberId);
     }
 }
