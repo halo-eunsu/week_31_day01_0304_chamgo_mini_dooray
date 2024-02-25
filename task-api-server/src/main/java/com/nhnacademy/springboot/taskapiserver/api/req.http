@@ -1,0 +1,7 @@
+POST http://localhost:9090/projects
+Content-Type: application/json
+
+{
+  "projectId": "1",
+  "projectName": "New Project"
+}
