@@ -32,7 +32,7 @@ public class MileStoneController {
     }
 
     //todo: 2. Milestone 수정 - PUT /projects/{projectId}/milestones/{milestoneId}
-    @PutMapping("milestones/{milestoneId}")
+    @PutMapping("/milestones/{milestoneId}")
     public ResponseEntity<MileStone> updateMileStone(@PathVariable Long projectId,
                                                      @PathVariable Long milestoneId,
                                                      @RequestBody MileStoneDto mileStoneDto) {

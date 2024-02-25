@@ -5,6 +5,7 @@ import com.nhnacademy.springboot.openapigateway.domain.LoginResponse;
 import com.nhnacademy.springboot.openapigateway.service.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,16 +23,31 @@ public class LoginController {
         this.loginService = loginService;
     }
 
+    @GetMapping
+    public String login() {
+        return "login";
+    }
+
     @PostMapping
     public String login(@Valid LoginRequest loginRequest, HttpSession session, Model model) {
-        Optional<LoginResponse> loginResponse = loginService.login(loginRequest);
+        Optional<LoginResponse> loginResponseOptional = loginService.login(loginRequest);
 
-        if (loginResponse.isPresent() && loginResponse.get().getId() != null) {
-            session.setAttribute("loginId", loginResponse.get().getId());
-            model.addAttribute("loginId", loginResponse.get().getId());
+        if (!loginResponseOptional.isPresent()) {
+            // Laravel 서비스에서 로그인 응답이 없을 경우 처리
+            model.addAttribute("loginError", "Login failed. Please check your ID or password.");
+            return "login";
+        }
+
+        LoginResponse loginResponse = loginResponseOptional.get();
+
+        if (loginResponse.getId() != null) {
+            session.setAttribute("loginId", loginResponse.getId());
+            model.addAttribute("loginId", loginResponse.getId());
             return "redirect:/home";
         }
-//        model.addAttribute("loginError", "Login failed.");
+
+        // Laravel 서비스에서는 응답이 있지만 ID가 없는 경우 처리
+        model.addAttribute("loginError", "Login failed. Please check your ID or password.");
         return "login";
     }
 }

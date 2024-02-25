@@ -1,6 +1,5 @@
 package com.nhnacademy.springboot.openapigateway.interceptor;
 
-import com.nhnacademy.springboot.openapigateway.domain.type.Auth;
 import com.nhnacademy.springboot.openapigateway.domain.Member;
 import com.nhnacademy.springboot.openapigateway.service.MemberService;
 import org.springframework.context.annotation.Lazy;
@@ -27,7 +26,10 @@ public class MemberAuthInterceptor implements HandlerInterceptor {
         }
 
         Member member = memberService.getMember((String) request.getSession().getAttribute("loginId")).get();
-        if (Auth.ADMIN == member.getAuth()) {
+//        if (Auth.ADMIN == member.getAuth()) {
+//            return true;
+//        }
+        if (Member.Auth.ADMIN == member.getAuth()) {
             return true;
         }
 
