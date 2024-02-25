@@ -120,3 +120,5 @@ Ytask-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/dto/Proje
 [task-api-server/src/main/java/com/nhnacademy/springboot/taskapiserver/dto/MileStoneDto.java,1/4/1431c394733dd31c8e90d52ddc29d84d8bd7aa41
 œ
 laccount-api-server/src/main/java/com/nhnacademy/springboot/accountapiserver/AccountApiServerApplication.java,1/b/1b8f72fcd91e8994c104da08db39152b1fa264b5
+–
+fopen-api-gateway/src/main/java/com/nhnacademy/springboot/openapigateway/OpenApiGatewayApplication.java,f/4/f4eff3b0d45b0019f8b9e38d79e0cd6692213ee3

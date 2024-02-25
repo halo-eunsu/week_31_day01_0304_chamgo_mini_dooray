@@ -5,7 +5,11 @@ import com.nhnacademy.springboot.taskapiserver.domain.project.Project;
 import com.nhnacademy.springboot.taskapiserver.domain.project.ProjectService;
 import com.nhnacademy.springboot.taskapiserver.dto.ProjectDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/projects")
@@ -19,30 +23,34 @@ public class ProjectController {
 
     // 프로젝트 생성
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createProject(@RequestBody Project project) {
+    public ResponseEntity<Void> createProject(@RequestBody Project project) {
         projectService.createProject(project);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    // 프로젝트 조회
     @GetMapping("/{projectId}")
-    public Project getProject(@PathVariable Long projectId) {
-        return projectService.getProjectById(projectId);
+    public ResponseEntity<Map<String, Object>> getProject(@PathVariable Long projectId) {
+        Project project = projectService.getProjectById(projectId);
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("projectId", project.getProjectId());
+        responseBody.put("projectName", project.getProjectName());
+
+        return ResponseEntity.ok(responseBody);
     }
 
     // 프로젝트 수정
     @PutMapping("/{projectId}")
-    @ResponseStatus(HttpStatus.OK)
-    public void editProject(@PathVariable Long projectId, @RequestBody ProjectDto projectEditDto) {
+    public ResponseEntity<Void> editProject(@PathVariable Long projectId, @RequestBody ProjectDto projectEditDto) {
         projectEditDto.setProjectId(projectId);
         projectService.modifyProject(projectEditDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 프로젝트 삭제
     @DeleteMapping("/{projectId}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteProject(@PathVariable Long projectId) {
+    public ResponseEntity<Void> deleteProject(@PathVariable Long projectId) {
         projectService.deleteProject(projectId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 프로젝트에 멤버 추가
@@ -55,7 +63,8 @@ public class ProjectController {
     // 프로젝트에서 멤버 삭제
     @DeleteMapping("/{projectId}/members/{memberId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteProjectMember(@PathVariable Long projectId, @PathVariable String memberId) {
+    public ResponseEntity<Void> deleteProjectMember(@PathVariable Long projectId, @PathVariable String memberId) {
         projectService.deleteProjectMember(projectId, memberId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
