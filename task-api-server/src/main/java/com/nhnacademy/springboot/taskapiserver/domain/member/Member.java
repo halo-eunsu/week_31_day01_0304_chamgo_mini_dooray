@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Setter
 @Getter
 @Entity
 public class Member {

@@ -1,16 +1,28 @@
 package com.nhnacademy.springboot.taskapiserver.domain.member;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.never;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.nhnacademy.springboot.taskapiserver.domain.AuthType;
 import com.nhnacademy.springboot.taskapiserver.domain.project.Project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
+@ExtendWith(MockitoExtension.class)
 class MemberServiceImplTest {
 
     @Mock
@@ -19,85 +31,60 @@ class MemberServiceImplTest {
     @InjectMocks
     private MemberServiceImpl memberService;
 
+    private Member member;
+
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        member = new Member();
+        member.setMemberId("testMember");
+        member.setAuth(AuthType.MEMBER);
+        member.setProjects(new HashSet<>(Arrays.asList(new Project(1L))));
     }
 
     @Test
     void getMembers() {
-
-        when(memberRepository.findAll()).thenReturn(Arrays.asList(new Member(), new Member()));
-
-        // when
+        when(memberRepository.findAll()).thenReturn(Arrays.asList(member));
         List<Member> members = memberService.getMembers();
-
-        // then
-        assertNotNull(members);
-        assertEquals(2, members.size());
+        assertEquals(1, members.size());
+        verify(memberRepository).findAll();
     }
 
     @Test
     void getMember() {
-        // given
-        String memberId = "member1";
-        Member mockMember = new Member();
-        when(memberRepository.findById(memberId)).thenReturn(Optional.of(mockMember));
-
-        // when
-        Member member = memberService.getMember(memberId);
-
-        // then
-        assertNotNull(member);
-        assertEquals(mockMember, member);
+        when(memberRepository.findById(any())).thenReturn(Optional.of(member));
+        Member result = memberService.getMember("testMember");
+        assertEquals("testMember", result.getMemberId());
+        verify(memberRepository).findById(any());
     }
 
     @Test
     void createMember() {
-        // given
-        Member newMember = new Member();
-        newMember.setMemberId("member2");
-        when(memberRepository.existsByMemberId(anyString())).thenReturn(false);
-        when(memberRepository.save(any(Member.class))).thenReturn(newMember);
-
-        // when
-        Member savedMember = memberService.createMember(newMember);
-
-        // then
-        assertNotNull(savedMember);
-        assertEquals("member2", savedMember.getMemberId());
+        when(memberRepository.existsByMemberId(any())).thenReturn(false);
+        when(memberRepository.save(any(Member.class))).thenReturn(member);
+        Member createdMember = memberService.createMember(member);
+        assertEquals("testMember", createdMember.getMemberId());
+        verify(memberRepository).save(any(Member.class));
     }
 
     @Test
     void delete() {
-        // given
-        String memberId = "member3";
-        Member existingMember = new Member();
-        existingMember.setMemberId(memberId);
-        when(memberRepository.findById(memberId)).thenReturn(Optional.of(existingMember));
-
-        // when
-        memberService.delete(memberId);
-
-        // then
-        verify(memberRepository).delete(existingMember);
+        when(memberRepository.findById(any())).thenReturn(Optional.of(member));
+        memberService.delete("testMember");
+        verify(memberRepository).delete(any(Member.class));
     }
 
     @Test
     void getProjects() {
-        // given
-        String memberId = "member4";
-        Member memberWithProjects = new Member();
-        Set<Project> mockProjects = new HashSet<>(Arrays.asList(new Project(), new Project()));
-        when(memberRepository.findById(memberId)).thenReturn(Optional.of(memberWithProjects));
-        when(memberWithProjects.getProjects()).thenReturn(mockProjects);
-
-        // when
-        List<Project> projects = new ArrayList<>(memberService.getProjects(memberId));
-
-        // then
-        assertNotNull(projects);
-        assertEquals(2, projects.size());
+        when(memberRepository.findById(any())).thenReturn(Optional.of(member));
+        List<Project> projects = memberService.getProjects("testMember");
+        assertEquals(1, projects.size());
+        verify(memberRepository).findById(any());
     }
 
+    @Test
+    void MemberExceptions() {
+        when(memberRepository.existsByMemberId(any())).thenReturn(true);
+        assertThrows(IllegalStateException.class, () -> memberService.createMember(member));
+        verify(memberRepository, never()).save(any(Member.class));
+    }
 }
